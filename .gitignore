@@ -1,0 +1,13 @@
+# Visual Studio diễn tiến và bộ nhớ đệm
+.vs/
+[Bb]in/
+[Ob]j/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Tệp sinh ra bởi bộ cài đặt
+*.exe
+*.dll
+*.pdb

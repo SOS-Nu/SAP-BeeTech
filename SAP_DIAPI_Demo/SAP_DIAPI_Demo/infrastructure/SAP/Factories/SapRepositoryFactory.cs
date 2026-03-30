@@ -10,15 +10,15 @@ namespace SAP_DIAPI_Demo.Infrastructure.SAP.Factories
     public static class SapRepositoryFactory
     {
 
-        //public static ISalesOrderRepository() CreateSalesOrderRepository()
-        //{
-        //    if (AppSetting.UseServiceLayer)
-        //    {
-        //        return new SalesOrderRepositorySL();
-        //    }
+        public static ISalesOrderRepository CreateSalesOrderRepository()
+        {
+            if (AppSetting.UseServiceLayer)
+            {
+                return new SalesOrderRepositorySL();
+            }
 
-        //    return new SalesOrderRepositoryDI();
-        //}
+            return new SalesOrderRepositoryDI();
+        }
         public static IBusinessPartnerRepository CreateBusinessPartnerRepository()
         {
             if (AppSetting.UseServiceLayer)

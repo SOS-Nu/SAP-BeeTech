@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SAP_DIAPI_Demo.Configurations;
+using SAP_DIAPI_Demo.domain.models.Mappers;
 using SAP_DIAPI_Demo.infrastructure.SAP.Extentions;
 using SAP_DIAPI_Demo.Interfaces.Services;
 using SAP_DIAPI_Demo.Models;
@@ -28,14 +29,9 @@ public class BusinessPartnerRepositorySL : IBusinessPartnerRepository
     public async Task<BaseResponse<bool>> UpdateAsync(BusinessPartnerModel bp)
     {
 
-        var json = JsonConvert.SerializeObject(new
-        {
-            bp.CardName,
-            bp.Phone1,
-            bp.Email,
-            bp.FederalTaxID,
-            EmailAddress = bp.Email
-        }, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+        var dto = BusinessPartnerMapper.ToSLBussinessPartnerDTO(bp);
+        var json = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
         //new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }
         //nếu ko có setting này sap sẽ bơ nó đi ko gửi nữa, nếu ko có nó sẽ gửi kèm là null và db sẽ bị trống
 

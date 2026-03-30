@@ -1,25 +1,14 @@
-﻿using Newtonsoft.Json;
-using SAP_DIAPI_Demo.Configurations;
-using SAP_DIAPI_Demo.Infrastructure;
+﻿using SAP_DIAPI_Demo.Configurations;
 using SAP_DIAPI_Demo.Infrastructure.SAP.Factories;
 using SAP_DIAPI_Demo.Interfaces.Repository;
 using SAP_DIAPI_Demo.Interfaces.Services;
 using SAP_DIAPI_Demo.Models;
-using SAP_DIAPI_Demo.Repositories;
-using SAP_DIAPI_Demo.Repository;
 using SAP_DIAPI_Demo.Services;
-using SAPbobsCOM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-
 
 namespace SAP_DIAPI_Demo.Presentation
 {
@@ -27,19 +16,16 @@ namespace SAP_DIAPI_Demo.Presentation
     {
         static void Main(string[] args)
         {
-
-            //ISalesOrderRepository orderRepo = SapRepositoryFactory.CreateSalesOrderRepository();
-            //ISalesOrderService orderService = new SalesOrderService(orderRepo);
-
-
-            // 1. Khởi tạo Dependencies thông qua Factory (Không dùng từ khóa "new" cho hạ tầng cụ thể nữa)
+            // 1. Khởi tạo Dependencies thông qua Factory
             IBusinessPartnerRepository bpRepo = SapRepositoryFactory.CreateBusinessPartnerRepository();
             IBusinessPartnerService bpService = new BusinessPartnerService(bpRepo);
 
-            IItemRepository itemRepo =  SapRepositoryFactory.CreateItemRepository();
+            IItemRepository itemRepo = SapRepositoryFactory.CreateItemRepository();
             IItemService itemService = new ItemService(itemRepo);
 
-
+            // Khởi tạo thêm Service cho Sales Order
+            ISalesOrderRepository orderRepo = SapRepositoryFactory.CreateSalesOrderRepository();
+            ISalesOrderService orderService = new SalesOrderService(orderRepo);
 
             bool exit = false;
 
@@ -51,7 +37,6 @@ namespace SAP_DIAPI_Demo.Presentation
                 Console.WriteLine("   SAP INTEGRATION SYSTEM - INTERACTIVE TOOL ");
                 Console.WriteLine("=============================================");
 
-                // Hiển thị trạng thái cấu hình hiện tại từ App.config
                 Console.ForegroundColor = AppSetting.UseServiceLayer ? ConsoleColor.Magenta : ConsoleColor.Blue;
                 Console.WriteLine($"   [CURRENT MODE]: {(AppSetting.UseServiceLayer ? "SERVICE LAYER (REST API)" : "DI API (COM OBJECT)")}");
 
@@ -71,7 +56,7 @@ namespace SAP_DIAPI_Demo.Presentation
                 switch (choice)
                 {
                     case "1":
-                        //HandleCreateOrder(bpService);
+                        HandleCreateOrder(orderService);
                         break;
                     case "2":
                         HandleUpdateBP(bpService);
@@ -92,6 +77,78 @@ namespace SAP_DIAPI_Demo.Presentation
             }
         }
 
+        // --- HÀM XỬ LÝ TẠO SALES ORDER (NHIỀU DÒNG) ---
+        static void HandleCreateOrder(ISalesOrderService orderService)
+        {
+            Console.WriteLine("\n--- Create Sales Order ---");
+            Console.Write("Enter CardCode: ");
+            string cardCode = Console.ReadLine();
+
+            Console.Write("Enter Branch ID (BPL_ID): ");
+            int.TryParse(Console.ReadLine(), out int bplId);
+
+            Console.Write("Enter Comments: ");
+            string comments = Console.ReadLine();
+
+            var orderModel = new SalesOrderModel
+            {
+                CardCode = cardCode,
+                DocDueDate = DateTime.Now.AddDays(1), // Mặc định ngày mai giao hàng
+                BPL_IDAssignedToInvoice = bplId,
+                Comments = comments,
+                Lines = new List<SalesOrderItemModel>()
+            };
+
+            // Vòng lặp nhập Line Items
+            bool addingLines = true;
+            while (addingLines)
+            {
+                Console.WriteLine($"\n--- Item Line #{orderModel.Lines.Count + 1} ---");
+                Console.Write("Enter ItemCode: ");
+                string itemCode = Console.ReadLine();
+                if (string.IsNullOrEmpty(itemCode)) break;
+
+                Console.Write("Enter Quantity: ");
+                double.TryParse(Console.ReadLine(), out double qty);
+
+                Console.Write("Enter Price (Optional - Enter to use SAP default): ");
+                string priceInput = Console.ReadLine();
+                double? price = null;
+                if (!string.IsNullOrEmpty(priceInput))
+                {
+                    if (double.TryParse(priceInput, out double p)) price = p;
+                }
+
+                Console.Write("Enter Warehouse: ");
+                string whs = Console.ReadLine();
+
+                orderModel.Lines.Add(new SalesOrderItemModel
+                {
+                    ItemCode = itemCode,
+                    Quantity = qty,
+                    Price = price ?? 0,
+                    WarehouseCode = whs
+                });
+
+                Console.Write("Add another item? (y/n): ");
+                addingLines = Console.ReadLine()?.ToLower() == "y";
+            }
+
+            if (orderModel.Lines.Count == 0)
+            {
+                Console.WriteLine("Order must have at least one line. Operation cancelled.");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.WriteLine("Sending to SAP...");
+            var res = orderService.CreateOrder(orderModel);
+
+            // Hiển thị kết quả kèm DocNum/DocEntry nếu thành công
+            string extraData = res.Data != null ? $"DocEntry: {res.Data.DocEntry} | DocNum: {res.Data.DocNum}" : "";
+            ShowResult(res.Success, res.Message, extraData);
+        }
+
         static void HandleUpdateBP(IBusinessPartnerService bpService)
         {
             Console.WriteLine("\n--- Update Business Partner ---");
@@ -99,47 +156,41 @@ namespace SAP_DIAPI_Demo.Presentation
             string code = Console.ReadLine();
             Console.Write("Enter New Name: ");
             string name = Console.ReadLine();
+            Console.Write("Enter Phone1: ");
+            string phone = Console.ReadLine();
 
-            // Khởi tạo Model chuẩn từ Domain
             var model = new BusinessPartnerModel
             {
                 CardCode = code,
-                CardName = name
+                CardName = name,
+                Phone1 = phone
             };
 
-            // Gọi Service thực thi logic nghiệp vụ
             var res = bpService.UpdateBusinessPartner(model);
-
             ShowResult(res.Success, res.Message);
         }
 
         static void HandleUpdateItemPrice(IItemService itemService)
         {
             Console.WriteLine("\n--- Update Item Price ---");
-            Console.Write("Enter ItemCode to update: ");
-            string ItemCode = Console.ReadLine();
-            Console.Write("Enter ItemName: ");
-            string ItemName = Console.ReadLine();
-            Console.Write("Enter PriceList: ");
-            string PriceList = Console.ReadLine();
-            Console.Write("Enter Price: ");
-            string Price = Console.ReadLine(); 
+            Console.Write("Enter ItemCode: ");
+            string itemCode = Console.ReadLine();
+            Console.Write("Enter PriceList ID: ");
+            int.TryParse(Console.ReadLine(), out int priceList);
+            Console.Write("Enter New Price: ");
+            double.TryParse(Console.ReadLine(), out double price);
             Console.Write("Enter Currency: ");
-            string Currency = Console.ReadLine();
+            string currency = Console.ReadLine();
 
-            // Khởi tạo Model chuẩn từ Domain
             var model = new ItemModel
             {
-                ItemCode = ItemCode,
-                ItemName = ItemName,
-                PriceList = int.Parse(PriceList),
-                Price = double.Parse(Price),
-                Currency = Currency
+                ItemCode = itemCode,
+                PriceList = priceList,
+                Price = price,
+                Currency = currency
             };
 
-            // Gọi Service thực thi logic nghiệp vụ
             var res = itemService.UpdatePriceItem(model);
-
             ShowResult(res.Success, res.Message);
         }
 
@@ -148,22 +199,17 @@ namespace SAP_DIAPI_Demo.Presentation
             if (success)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                // Bỏ đi khoảng trắng thừa nếu biến data rỗng
-                string dataDisplay = string.IsNullOrEmpty(data) ? "" : $" | Data: {data}";
-                Console.WriteLine($"SUCCESS: {msg}{dataDisplay}");
+                string dataDisplay = string.IsNullOrEmpty(data) ? "" : $" | {data}";
+                Console.WriteLine($"\nSUCCESS: {msg}{dataDisplay}");
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"FAILED: {msg}");
+                Console.WriteLine($"\nFAILED: {msg}");
             }
             Console.ResetColor();
             Console.WriteLine("\nPress any key to return to menu...");
             Console.ReadKey();
         }
     }
-
-
-
-
 }

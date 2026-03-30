@@ -11,11 +11,11 @@ namespace SAP_DIAPI_Demo.domain.models.Mappers
     public static class ItemMapper
     {
         // Chuyển đổi từ Model sang DTO để gửi lên Service Layer
-        public static SapItemUpdateRequest ToSLPriceDTO(this ItemModel model)
+        public static ItemUpdateRequest ToSLPriceDTO(this ItemModel model)
         {
             if (model == null) return null;
 
-            return new SapItemUpdateRequest
+            return new ItemUpdateRequest
             {
                 ItemName = model.ItemName,
                 ItemPrices = new List<ItemPriceDTO>

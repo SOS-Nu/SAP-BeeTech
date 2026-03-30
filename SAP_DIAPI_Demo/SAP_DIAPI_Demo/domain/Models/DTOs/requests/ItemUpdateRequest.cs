@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace SAP_DIAPI_Demo.domain.Models.DTOs
 {
-    public class SapItemUpdateRequest
+    public class ItemUpdateRequest
     {
-        [JsonProperty("ItemName")]
-        public string ItemName { get; set; }
+        private string _itemName;
+        [JsonProperty("ItemName", NullValueHandling = NullValueHandling.Include)]
+        public string ItemName
+        {
+            get => _itemName;
+            set => _itemName = string.IsNullOrWhiteSpace(value) ? null : value;
+        }
 
         [JsonProperty("ItemPrices")]
         public List<ItemPriceDTO> ItemPrices { get; set; }

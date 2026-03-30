@@ -75,8 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="domain\models\DTOs\SapItemUpdateRequest.cs" />
+    <Compile Include="domain\models\DTOs\requests\BusinessPartnerRequest.cs" />
+    <Compile Include="domain\models\DTOs\requests\SalesOrderRequest.cs" />
+    <Compile Include="domain\models\DTOs\requests\ItemUpdateRequest.cs" />
     <Compile Include="domain\models\LoginResponse.cs" />
+    <Compile Include="domain\models\Mappers\BusinessPartnerMapper.cs" />
+    <Compile Include="domain\models\Mappers\SalesOrderMapper.cs" />
     <Compile Include="domain\models\Mappers\ItemMapper.cs" />
     <Compile Include="infrastructure\configurations\AppSetting.cs" />
     <Compile Include="infrastructure\SAP\connecter\SapConnector.cs" />
@@ -93,8 +97,9 @@
     <Compile Include="domain\common\BaseReponse.cs" />
     <Compile Include="domain\models\BusinessPartnerModel.cs" />
     <Compile Include="domain\models\ItemModel.cs" />
-    <Compile Include="domain\models\Response\SalesOrderReponse.cs" />
+    <Compile Include="domain\models\DTOs\responses\SalesOrderReponse.cs" />
     <Compile Include="domain\models\SalesOrderModel.cs" />
+    <Compile Include="infrastructure\SAP\ServiceLayer\repository\SalesOrderRepositorySL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="infrastructure\SAP\DIAPI\Repositories\BusinessPartnerRepositoryDI.cs" />

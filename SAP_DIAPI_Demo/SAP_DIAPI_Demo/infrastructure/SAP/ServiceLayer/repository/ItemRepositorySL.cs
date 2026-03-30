@@ -33,7 +33,8 @@ namespace SAP_DIAPI_Demo.Repository.RepositorySL
 
         public async Task<BaseResponse<bool>> UpdateAsync(ItemModel priceData)
         {
-            var dto = priceData.ToSLPriceDTO();
+            var dto = ItemMapper.ToSLPriceDTO(priceData);
+            //var dto = priceData.ToSLPriceDTO();
             var json = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             var uri = $"Items('{Uri.EscapeDataString(priceData.ItemCode)}')";
 

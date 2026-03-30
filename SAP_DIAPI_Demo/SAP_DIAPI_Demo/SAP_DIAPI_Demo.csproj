@@ -37,12 +37,36 @@
     <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=13.0.1.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.2\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.6.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Text.Json, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,35 +75,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="domain\Models\LoginResponse.cs" />
+    <Compile Include="domain\models\DTOs\SapItemUpdateRequest.cs" />
+    <Compile Include="domain\models\LoginResponse.cs" />
+    <Compile Include="domain\models\Mappers\ItemMapper.cs" />
     <Compile Include="infrastructure\configurations\AppSetting.cs" />
     <Compile Include="infrastructure\SAP\connecter\SapConnector.cs" />
     <Compile Include="infrastructure\SAP\connecter\ServiceLayerConnector.cs" />
     <Compile Include="application\Interfaces\IRepositories\IBusinessPartnerRepository.cs" />
     <Compile Include="application\Interfaces\IRepositories\IItemRepository.cs" />
     <Compile Include="application\Interfaces\IRepositories\ISalesOrderRepository.cs" />
-    <Compile Include="infrastructure\SAP\Factories\SapRepositoryFactory.cs" />
-    <Compile Include="infrastructure\SAP\ServiceLayer\Repositories\BusinessPartnerRepositorySL.cs" />
+    <Compile Include="infrastructure\SAP\Extentions\HttpClientExtensions.cs" />
+    <Compile Include="infrastructure\SAP\factories\SapRepositoryFactory.cs" />
+    <Compile Include="infrastructure\SAP\ServiceLayer\repository\BusinessPartnerRepositorySL.cs" />
     <Compile Include="application\Interfaces\IServices\IBusinessPartnerService.cs" />
     <Compile Include="application\Interfaces\IServices\IItemServices.cs" />
     <Compile Include="application\Interfaces\IServices\ISalesOrderService.cs" />
-    <Compile Include="domain\Common\BaseReponse.cs" />
-    <Compile Include="domain\Models\BusinessPartnerModel.cs" />
-    <Compile Include="domain\Models\ItemModel.cs" />
-    <Compile Include="domain\Models\Response\SalesOrderReponse.cs" />
-    <Compile Include="domain\Models\SalesOrderModel.cs" />
+    <Compile Include="domain\common\BaseReponse.cs" />
+    <Compile Include="domain\models\BusinessPartnerModel.cs" />
+    <Compile Include="domain\models\ItemModel.cs" />
+    <Compile Include="domain\models\Response\SalesOrderReponse.cs" />
+    <Compile Include="domain\models\SalesOrderModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="infrastructure\SAP\DIAPI\Repositories\BusinessPartnerRepositoryDI.cs" />
     <Compile Include="infrastructure\SAP\DIAPI\Repositories\ItemRepositoryDI.cs" />
     <Compile Include="infrastructure\SAP\DIAPI\Repositories\SalesOrderRepositoryDI.cs" />
-    <Compile Include="infrastructure\SAP\ServiceLayer\Repositories\ItemRepositorySL.cs" />
-    <Compile Include="application\Services\BusinessPartnerServices.cs" />
-    <Compile Include="application\Services\ItemServices.cs" />
-    <Compile Include="application\Services\SalesOrderService.cs" />
+    <Compile Include="infrastructure\SAP\ServiceLayer\repository\ItemRepositorySL.cs" />
+    <Compile Include="application\services\BusinessPartnerServices.cs" />
+    <Compile Include="application\services\ItemServices.cs" />
+    <Compile Include="application\services\SalesOrderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="SAPbobsCOM">

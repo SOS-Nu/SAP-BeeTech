@@ -29,7 +29,7 @@ namespace SAP_DIAPI_Demo.Services
 
            ;
 
-            return _repository.UpdatePriceDI(item);
+            return _repository.UpdatePrice(item);
         }
     }
 }

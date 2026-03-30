@@ -9,7 +9,7 @@ namespace SAP_DIAPI_Demo.Interfaces.Repository
 {
     public interface IItemRepository
     {
-        BaseResponse<bool> UpdatePriceDI(ItemModel priceData);
+        BaseResponse<bool> UpdatePrice(ItemModel priceData);
 
     }
 }

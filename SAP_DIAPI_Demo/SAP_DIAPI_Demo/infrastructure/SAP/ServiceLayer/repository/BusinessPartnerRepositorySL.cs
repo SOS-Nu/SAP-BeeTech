@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SAP_DIAPI_Demo.Configurations;
+using SAP_DIAPI_Demo.infrastructure.SAP.Extentions;
 using SAP_DIAPI_Demo.Interfaces.Services;
 using SAP_DIAPI_Demo.Models;
 using System;
@@ -7,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
 public class BusinessPartnerRepositorySL : IBusinessPartnerRepository
 {
     public BaseResponse<bool> Update(BusinessPartnerModel bp)
@@ -19,7 +19,7 @@ public class BusinessPartnerRepositorySL : IBusinessPartnerRepository
         }
         catch (Exception ex)
         {
-            // Nếu có lỗi bên trong, lấy message của lỗi đó
+           
             var msg = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
             return BaseResponse<bool>.Failure(-500, $"Error system: {msg}");
         }
@@ -27,31 +27,35 @@ public class BusinessPartnerRepositorySL : IBusinessPartnerRepository
 
     public async Task<BaseResponse<bool>> UpdateAsync(BusinessPartnerModel bp)
     {
-        var client = await ServiceLayerConnector.GetClientAsync();
 
-        // Chỉ lấy trường cần update, bỏ qua các trường null
         var json = JsonConvert.SerializeObject(new
         {
             bp.CardName,
             bp.Phone1,
-            EmailAddress = bp.Email,
-            VatIDNum = bp.FederalTaxID
+            bp.Email,
+            bp.FederalTaxID,
+            EmailAddress = bp.Email
         }, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+        //new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }
+        //nếu ko có setting này sap sẽ bơ nó đi ko gửi nữa, nếu ko có nó sẽ gửi kèm là null và db sẽ bị trống
 
-        // Tạo Request nhanh với Patch Override
-        var request = new HttpRequestMessage(HttpMethod.Post, $"BusinessPartners('{Uri.EscapeDataString(bp.CardCode)}')")
+        //var request = new HttpRequestMessage(new HttpMethod("PATCH"), $"BusinessPartners('{Uri.EscapeDataString(bp.CardCode)}')");
+
+
+        var uri = $"BusinessPartners('{Uri.EscapeDataString(bp.CardCode)}')";
+
+        var response = await ServiceLayerConnector.ExecuteWithRetryAsync(async (client) =>
         {
-            Content = new StringContent(json, new UTF8Encoding(false), "application/json")
-        };
-        request.Headers.Add("X-HTTP-Method-Override", "PATCH");
+            var request = new StringContent(json, Encoding.UTF8, "application/json");
 
-        var response = await client.SendAsync(request);
+            return await client.PatchAsync(uri, request);
+        });
 
-        // Nếu 401 (Hết hạn), reset session để lần sau tự login lại
+        // Xử lý Session 401 như cũ
         if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
             ServiceLayerConnector.ResetSession();
-            return await UpdateAsync(bp); // Thử lại 1 lần
+            return await UpdateAsync(bp);
         }
 
         return response.IsSuccessStatusCode

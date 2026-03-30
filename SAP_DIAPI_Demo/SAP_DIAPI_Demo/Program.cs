@@ -27,9 +27,19 @@ namespace SAP_DIAPI_Demo.Presentation
     {
         static void Main(string[] args)
         {
+
+            //ISalesOrderRepository orderRepo = SapRepositoryFactory.CreateSalesOrderRepository();
+            //ISalesOrderService orderService = new SalesOrderService(orderRepo);
+
+
             // 1. Khởi tạo Dependencies thông qua Factory (Không dùng từ khóa "new" cho hạ tầng cụ thể nữa)
             IBusinessPartnerRepository bpRepo = SapRepositoryFactory.CreateBusinessPartnerRepository();
             IBusinessPartnerService bpService = new BusinessPartnerService(bpRepo);
+
+            IItemRepository itemRepo =  SapRepositoryFactory.CreateItemRepository();
+            IItemService itemService = new ItemService(itemRepo);
+
+
 
             bool exit = false;
 
@@ -49,7 +59,9 @@ namespace SAP_DIAPI_Demo.Presentation
                 Console.WriteLine("=============================================");
                 Console.ResetColor();
 
-                Console.WriteLine("1. Update Business Partner");
+                Console.WriteLine("1. Create Sales Order");
+                Console.WriteLine("2. Update Business Partner");
+                Console.WriteLine("3. Update Item Price (Master Data)");
                 Console.WriteLine("0. Exit Program");
                 Console.WriteLine("---------------------------------------------");
                 Console.Write("Select an option: ");
@@ -59,7 +71,13 @@ namespace SAP_DIAPI_Demo.Presentation
                 switch (choice)
                 {
                     case "1":
+                        //HandleCreateOrder(bpService);
+                        break;
+                    case "2":
                         HandleUpdateBP(bpService);
+                        break;
+                    case "3":
+                        HandleUpdateItemPrice(itemService);
                         break;
                     case "0":
                         exit = true;
@@ -74,7 +92,7 @@ namespace SAP_DIAPI_Demo.Presentation
             }
         }
 
-        static void HandleUpdateBP(IBusinessPartnerService service)
+        static void HandleUpdateBP(IBusinessPartnerService bpService)
         {
             Console.WriteLine("\n--- Update Business Partner ---");
             Console.Write("Enter CardCode to update: ");
@@ -90,7 +108,37 @@ namespace SAP_DIAPI_Demo.Presentation
             };
 
             // Gọi Service thực thi logic nghiệp vụ
-            var res = service.UpdateBusinessPartner(model);
+            var res = bpService.UpdateBusinessPartner(model);
+
+            ShowResult(res.Success, res.Message);
+        }
+
+        static void HandleUpdateItemPrice(IItemService itemService)
+        {
+            Console.WriteLine("\n--- Update Business Partner ---");
+            Console.Write("Enter ItemCode to update: ");
+            string ItemCode = Console.ReadLine();
+            Console.Write("Enter ItemName: ");
+            string ItemName = Console.ReadLine();
+            Console.Write("Enter PriceList: ");
+            string PriceList = Console.ReadLine();
+            Console.Write("Enter Price: ");
+            string Price = Console.ReadLine(); 
+            Console.Write("Enter Currency: ");
+            string Currency = Console.ReadLine();
+
+            // Khởi tạo Model chuẩn từ Domain
+            var model = new ItemModel
+            {
+                ItemCode = ItemCode,
+                ItemName = ItemName,
+                PriceList = int.Parse(PriceList),
+                Price = double.Parse(Price),
+                Currency = Currency
+            };
+
+            // Gọi Service thực thi logic nghiệp vụ
+            var res = itemService.UpdatePriceItem(model);
 
             ShowResult(res.Success, res.Message);
         }

@@ -13,7 +13,7 @@ namespace SAP_DIAPI_Demo.Repository
 {
     public class ItemRepositoryDI : IItemRepository
     {
-        public BaseResponse<bool> UpdatePriceDI(ItemModel priceData)
+        public BaseResponse<bool> UpdatePrice(ItemModel priceData)
         {
             var company = SapConnector.GetCompany();
             var vItem = (Items)company.GetBusinessObject(BoObjectTypes.oItems);
@@ -24,13 +24,14 @@ namespace SAP_DIAPI_Demo.Repository
                     return BaseResponse<bool>.Failure(-404, "Item not found.");
 
                 bool CheckPriceListFound = false;
+                vItem.ItemName = priceData.ItemName;
                 for (int i = 0; i < vItem.PriceList.Count; i++)
                 {
                     vItem.PriceList.SetCurrentLine(i);
                     if (vItem.PriceList.PriceList == priceData.PriceList)
                     {
                         vItem.PriceList.Price = priceData.Price;
-                        if (!string.IsNullOrEmpty(priceData.Currency) & priceData.Currency.Length < 3)
+                        if (!string.IsNullOrEmpty(priceData.Currency) & priceData.Currency.Length <= 3)
                             vItem.PriceList.Currency = priceData.Currency;
 
                         CheckPriceListFound = true;

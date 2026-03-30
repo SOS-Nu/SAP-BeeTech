@@ -25,3 +25,14 @@ C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin
 C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Newtonsoft.Json.Bson.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Newtonsoft.Json.Bson.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\Newtonsoft.Json.Bson.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Buffers.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Memory.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_DIAPI_Demo\SAP_DIAPI_Demo\bin\Debug\System.Threading.Tasks.Extensions.xml

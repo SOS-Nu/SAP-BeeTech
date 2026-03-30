@@ -115,7 +115,7 @@ namespace SAP_DIAPI_Demo.Presentation
 
         static void HandleUpdateItemPrice(IItemService itemService)
         {
-            Console.WriteLine("\n--- Update Business Partner ---");
+            Console.WriteLine("\n--- Update Item Price ---");
             Console.Write("Enter ItemCode to update: ");
             string ItemCode = Console.ReadLine();
             Console.Write("Enter ItemName: ");

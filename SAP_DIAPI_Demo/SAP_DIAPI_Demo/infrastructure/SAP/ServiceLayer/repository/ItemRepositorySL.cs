@@ -35,7 +35,7 @@ namespace SAP_DIAPI_Demo.Repository.RepositorySL
         {
             var dto = priceData.ToSLPriceDTO();
             var json = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            var uri = $"BusinessPartners('{Uri.EscapeDataString(priceData.ItemCode)})')";
+            var uri = $"Items('{Uri.EscapeDataString(priceData.ItemCode)}')";
 
 
             var response = await ServiceLayerConnector.ExecuteWithRetryAsync(async (client) =>

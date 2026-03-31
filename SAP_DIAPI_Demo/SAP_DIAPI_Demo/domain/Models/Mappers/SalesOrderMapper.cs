@@ -2,7 +2,7 @@
 using SAP_DIAPI_Demo.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq; // Bắt buộc phải có để dùng .Select()
+using System.Linq; 
 
 namespace SAP_DIAPI_Demo.domain.models.Mappers
 {

@@ -1,0 +1,9 @@
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\HelloWorld.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\HelloWorld.csproj.ResolveComReference.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\HelloWorld.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\bin\Debug\Project1.exe
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\bin\Debug\Project1.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\Interop.SAPbobsCOM.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\Interop.SAPbouiCOM.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\Project1.exe
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\CSharp\01.HelloWorld\obj\Debug\Project1.pdb

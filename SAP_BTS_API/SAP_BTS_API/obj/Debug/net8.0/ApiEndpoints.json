@@ -1,0 +1,48 @@
+[
+  {
+    "ContainingType": "SAP_BTS_API.Controllers.BusinessPartnerController",
+    "Method": "Get",
+    "RelativePath": "api/BusinessPartner",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SAP_BTS_API.Controllers.ItemController",
+    "Method": "Get",
+    "RelativePath": "api/Item",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SAP_BTS_API.Controllers.SalesOrdersController",
+    "Method": "Create",
+    "RelativePath": "api/SalesOrders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SAP_BTS_API.Applications.DTOs.requests.SalesOrderRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SAP_BTS_API.Controllers.SalesOrdersController",
+    "Method": "GetOrders",
+    "RelativePath": "api/SalesOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

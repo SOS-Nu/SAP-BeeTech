@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SAP_BTS_API/SAP_BTS_API.csproj" />
+  <Project Path="SAP_BTS_WebMVC/SAP_BTS_WebMVC.csproj" Id="466c94a7-8ed5-46e8-94ea-1ec2324a5cb3" />
+</Solution>

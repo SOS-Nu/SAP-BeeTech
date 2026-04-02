@@ -1,0 +1,13 @@
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAP_Integration.Addon.exe
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAP_Integration.Addon.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAPBusinessOneSDK.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\obj\Debug\SAP_Integration.Addon.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\obj\Debug\SAP_Integration.Addon.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\obj\Debug\SAP_Integration.Addon.csproj.CopyComplete
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\obj\Debug\SAP_Integration.Addon.exe
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\obj\Debug\SAP_Integration.Addon.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAP_Integration.Core.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAP_Integration.Core.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\SAP_Integration.Core.dll.config
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Addon\bin\Debug\Newtonsoft.Json.xml

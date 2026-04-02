@@ -1,0 +1,13 @@
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\bin\Debug\SAP_Integration.Core.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\bin\Debug\SAP_Integration.Core.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\Interop.SAPbobsCOM.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\Interop.SAPbouiCOM.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.csproj.ResolveComReference.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.csproj.CopyComplete
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.dll
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\obj\Debug\SAP_Integration.Core.pdb
+C:\Users\ADMIN\Desktop\IT\BeeTech\.NET-BeeTech\SAP_Project_Master\SAP_Integration.Core\bin\Debug\SAP_Integration.Core.dll.config
